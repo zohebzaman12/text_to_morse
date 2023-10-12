@@ -16,10 +16,12 @@
             <textarea placeholder="Your translated text will appear here" id="output" cols="30" rows="10"></textarea>
         </div>
         <div id="audio-controls">
+            <audio id="dotAudio" src="dot.wav"></audio>
+            <audio id="dashAudio" src="dash.wav"></audio>
             <div class="audio-buttons">
-                <button>Play</button>
-                <button>Pause</button>
-                <button>Stop</button>
+                <button class="button-play">Play</button>
+                <button class="button-pause">Pause</button>
+                <button class="button-stop">Stop</button>
                 <button>Repeat</button>
             </div>
             <div class="audio-speed">
@@ -27,5 +29,6 @@
             </div>
         </div>
     </div>
+    <script src="app.js"></script>
 </body>
 </html>

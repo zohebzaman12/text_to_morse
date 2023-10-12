@@ -1,6 +1,23 @@
 const input = document.querySelector("#input");
 const output = document.querySelector("#output");
 
+const playButton = document.querySelector(".button-play");
+const stopButton = document.querySelector(".button-stop");
+let stopPlayback = false;
+
+
+
+playButton.addEventListener("click",function(){
+    stopPlayback = false;
+    playSound(output.value);
+})
+
+
+stopButton.addEventListener("click",function(){
+    stopPlayback= true;
+
+})
+
 
 input.addEventListener("input",function(e){
     const inputText = input.value;
@@ -53,6 +70,10 @@ async function playSound(morseCode) {
     };
   
     for (let i = 0; i < morseCode.length; i++) {
+
+        if(stopPlayback){
+            break;
+        }
       const char = morseCode[i];
       const audio = audioMorseCodeMap[char];
       
@@ -69,9 +90,3 @@ async function playSound(morseCode) {
     }
   }
 
-const playButton = document.querySelector(".button-play");
-
-
-playButton.addEventListener("click",function(){
-    playSound(output.value);
-})

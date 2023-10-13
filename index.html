@@ -9,25 +9,36 @@
 <body>
     <div id="main">
         <h1>Morse Code Translator</h1>
-        <div id="input-output">
+        <div id="tab-switcher">
+            <button id="textToMorseTab">Text to Morse</button>
+            <button id="morseToTextTab">Morse to Text</button>
+        </div>
+        <div id="input-output-t2m">
             <h2>INPUT</h2>
-            <textarea placeholder="Type your text here" id="input" cols="30" rows="10"></textarea>
+            <textarea placeholder="Type your English text here" id="input-t2m" cols="30" rows="10"></textarea>
             <h2>OUTPUT</h2>
-            <textarea placeholder="Your translated text will appear here" id="output" cols="30" rows="10"></textarea>
+            <textarea placeholder="Your translated text will appear here" id="output-t2m" cols="30" rows="10"></textarea>
+        </div>
+        <div id="input-output-m2t">
+            <h2>INPUT</h2>
+            <textarea placeholder="Type your morse code here" id="input-m2t" cols="30" rows="10"></textarea>
+            <h2>OUTPUT</h2>
+            <textarea placeholder="Your translated text will appear here" id="output-m2t" cols="30" rows="10"></textarea>
         </div>
         <div id="audio-controls">
             <audio id="dotAudio" src="dot.wav"></audio>
             <audio id="dashAudio" src="dash.wav"></audio>
             <div class="audio-buttons">
                 <button class="button-play">Play</button>
-                <button class="button-pause">Pause</button>
                 <button class="button-stop">Stop</button>
-                <button>Repeat</button>
+                <button class="button-copy">Copy</button>
             </div>
             <div class="audio-speed">
-                <input type="range" min="1" max="100" value="50" id="speed">
+                <input type="range" min="1" max="200" value="100" id="speed">
+                <label for="speed">100%</label>
             </div>
         </div>
+        <div class="flashing-light" id="flashingLight"></div>
     </div>
     <script src="app.js"></script>
 </body>

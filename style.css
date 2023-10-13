@@ -24,3 +24,18 @@ button{
 textarea{
     color: black;
 }
+
+#input-output-t2m{
+    display: block;
+}
+
+#input-output-m2t{
+    display: none;
+}
+
+.flashing-light {
+    width: 30px;
+    height: 30px;
+    background-color: #f6ff00; /* Set the light color here */
+    display: none; /* Initially hide the light */
+  } 

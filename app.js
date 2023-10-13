@@ -130,15 +130,9 @@ async function playSound(morseCode, speed = 100) {
         }
       const char = morseCode[i];
       const audio = audioMorseCodeMap[char];
-
-      let audioDuration = 0;
+      
       
       if (audio) {
-        const audioSpeed = char === '.' ? dotSpeed : dashSpeed;
-
-        audioDuration = (char === '.' ? dotAudio.duration : dashAudio.duration) * 1000 * (1 / audioSpeed);
-        await flashLight(audioDuration * (1 / audioSpeed));
-
         if (typeof audio === "function") {
           await audio();
         } else {
@@ -152,15 +146,7 @@ async function playSound(morseCode, speed = 100) {
     }
   }
 
-  function flashLight(duration) {
-    flashingLight.style.display = "block"; // Show the light
-    return new Promise(resolve => {
-      setTimeout(() => {
-        flashingLight.style.display = "none"; // Hide the light
-        resolve();
-      }, duration);
-    });
-  }
+
 
 
   

@@ -13,7 +13,7 @@ html,body {
     height: 100vh;
     width: 100vw;
     background: rgb(28,32,29);
-    overflow-x: hidden;
+    overflow-x: hidden; 
 }
 
 #main {
@@ -140,4 +140,9 @@ td {
     height: 50px;
     font-size: 20px;
     letter-spacing: 3px;
+}
+
+
+footer{
+    padding: 50px;
 }

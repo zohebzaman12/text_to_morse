@@ -5,7 +5,7 @@ const input = document.querySelector("#input-t2m");
 const output = document.querySelector("#output-t2m");
 const playButton = document.querySelector(".button-play");
 const stopButton = document.querySelector(".button-stop");
-const speedLabel = document.querySelector("label[for='speed']");
+const speedLabel = document.querySelector("output[for='speed']");
 const speedVal = document.querySelector("#speed");
 const copyButton = document.querySelector(".button-copy");
 
@@ -65,30 +65,36 @@ t2mTab.addEventListener("click",function(){
   t2mdiv.style = "display:block;"
   m2tdiv.style = "display:none;"
   isTextToMorseActive = true;
+  input.value = "";
+  output.value = "";
 })
 
 m2tTab.addEventListener("click",function(){
   t2mdiv.style = "display:none;"
   m2tdiv.style = "display:block;"
   isTextToMorseActive = false;
+  input2.value = "";
+  output2.value = "";
 })
 
+const morseCodeMap = {
+  'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
+  'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
+  'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..',
+  '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
+  '6': '-....', '7': '--...', '8': '---..', '9': '----.',
+  ' ': '/',
+  '.': '.-.-.-', ',': '--..--', '?': '..--..',
+  "'": '.----.', '!': '-.-.--', '/': '-..-',
+  '(': '-.--.', ')': '-.--.-', '&': '.-...',
+  ':': '---...', ';': '-.-.-.', '=': '-...-',
+  '+': '.-.-.', '-': '-....-', '_': '..--.-',
+  '"': '.-..-.', '$': '...-..-', '@': '.--.-.',
+  '¿': '..-.-', '¡': '--...-'
+};
+
+
 function textToMorse(text){
-    const morseCodeMap = {
-        'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
-        'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
-        'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..',
-        '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
-        '6': '-....', '7': '--...', '8': '---..', '9': '----.',
-        ' ': '/',
-        '.': '.-.-.-', ',': '--..--', '?': '..--..',
-        "'": '.----.', '!': '-.-.--', '/': '-..-',
-        '(': '-.--.', ')': '-.--.-', '&': '.-...',
-        ':': '---...', ';': '-.-.-.', '=': '-...-',
-        '+': '.-.-.', '-': '-....-', '_': '..--.-',
-        '"': '.-..-.', '$': '...-..-', '@': '.--.-.',
-        '¿': '..-.-', '¡': '--...-'
-      };
 
 
       text = text.toUpperCase();
@@ -194,3 +200,36 @@ async function playSound(morseCode, speed = 100) {
     return text;
 
   }
+
+
+  function populateTable() {
+    const tableBody = document.getElementById('morse-code-table');
+    const characters = Object.keys(morseCodeMap);
+    const numColumns = 5;
+
+    for (let i =0 ;i < characters.length; i+= numColumns) {
+      const row = document.createElement('tr');
+
+      for (let j = 0; j < numColumns; j++) {
+        if(i+j < characters.length){
+          const char = characters[i + j];
+          const morseCode = morseCodeMap[char];
+
+          const charCell = document.createElement('td');
+          charCell.textContent = char;
+          row.appendChild(charCell);
+
+          const morseCell = document.createElement('td');
+          morseCell.textContent = morseCode;
+          row.appendChild(morseCell);
+
+        }
+
+      }
+
+      tableBody.appendChild(row);
+       
+    }
+}
+
+populateTable();
